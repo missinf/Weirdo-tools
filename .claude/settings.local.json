@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx shadcn-ui@latest list:*)",
+      "Bash(npx shadcn@latest list)",
+      "Bash(dir /s /b src*.tsx 2)",
+      "Bash(nul)",
+      "Bash(findstr:*)",
+      "Bash(npx shadcn@latest diff:*)",
+      "WebSearch"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
