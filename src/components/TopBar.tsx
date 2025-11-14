@@ -34,16 +34,40 @@ export function TopBar({ onMenuClick }: TopBarProps) {
           </span>
         </div>
 
-        {/* Search Bar */}
-        <div className="flex-1 max-w-2xl">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+        {/* Spacer - smoothly grows from 1rem to 40rem between lg and really large screens */}
+        <div
+          className="shrink-0"
+          style={{ width: 'clamp(1rem, 15vw, 40rem)' }}
+        />
+
+        {/* Search Bar - Full version (> 500px) */}
+        <div className="flex-1 max-w-2xl hidden min-[501px]:flex">
+          <div className="flex w-full">
             <Input
               type="search"
-              placeholder="Search tools..."
-              className="w-full pl-10 bg-background"
+              placeholder="Search"
+              className="flex-1 bg-background rounded-r-none border-r-0 h-11"
             />
+            <Button
+              variant="secondary"
+              size="icon"
+              aria-label="Search"
+              className="rounded-l-none"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
           </div>
+        </div>
+
+        {/* Search Icon Only - Mobile version (<= 500px) */}
+        <div className="flex-1 flex justify-end min-[501px]:hidden">
+          <Button
+            variant="ghost"
+            size="icon"
+            aria-label="Search"
+          >
+            <Search className="h-5 w-5" />
+          </Button>
         </div>
       </div>
     </header>
