@@ -14,14 +14,14 @@ export function SavedPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>No saved tools yet</CardTitle>
+          <CardTitle>{copy.saved.noSavedTitle}</CardTitle>
           <CardDescription>{copy.saved.empty}</CardDescription>
         </CardHeader>
         <CardContent>
           <div className="h-64 rounded-md border-2 border-dashed border-border flex items-center justify-center">
             <div className="text-center text-muted-foreground">
               <Bookmark className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p>Your saved tools will appear here</p>
+              <p>{copy.saved.placeholder}</p>
             </div>
           </div>
         </CardContent>

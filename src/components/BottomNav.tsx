@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Wrench, Bookmark, HelpCircle, Settings } from 'lucide-react';
 import { copy } from '@/copy';
@@ -10,9 +11,7 @@ const navItems = [
   { to: '/settings', label: copy.nav.settings, icon: Settings },
 ];
 
-export function BottomNav() {
-  console.log('[BottomNav] Rendering');
-
+export const BottomNav = memo(function BottomNav() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card md:hidden">
       <div className="flex items-center justify-around h-16">
@@ -35,4 +34,4 @@ export function BottomNav() {
       </div>
     </nav>
   );
-}
+});

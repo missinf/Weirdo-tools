@@ -93,8 +93,8 @@ export function ToolsPage() {
         ariaLabel="Welcome message"
         content={
           <p className="text-base leading-relaxed">
-            <span className="font-semibold text-foreground">Welcome!</span>{' '}
-            <span className="text-muted-foreground">These are small tools made to help with ADHD.</span>
+            <span className="font-semibold text-foreground">{copy.tools.banner.welcome}</span>{' '}
+            <span className="text-muted-foreground">{copy.tools.banner.description}</span>
           </p>
         }
       />
@@ -124,7 +124,7 @@ export function ToolsPage() {
                       </CardHeader>
                       <CardContent>
                         <div className="h-32 rounded-md bg-muted flex items-center justify-center text-muted-foreground">
-                          Coming Soon
+                          {copy.tools.comingSoon}
                         </div>
                       </CardContent>
                     </Card>
@@ -151,7 +151,7 @@ export function ToolsPage() {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Share feedback on Discord</p>
+            <p>{copy.help.feedback.tooltip}</p>
           </TooltipContent>
         </Tooltip>
         <Tooltip>
@@ -166,7 +166,7 @@ export function ToolsPage() {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Support on Patreon</p>
+            <p>{copy.help.credits.patreon.tooltip}</p>
           </TooltipContent>
         </Tooltip>
       </div>

@@ -51,7 +51,7 @@ export function SettingsPage() {
                 </div>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Toggle dark mode</p>
+                <p>{copy.settings.appearance.darkMode.tooltip}</p>
               </TooltipContent>
             </Tooltip>
           </div>

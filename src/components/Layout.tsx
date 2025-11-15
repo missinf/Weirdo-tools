@@ -14,13 +14,9 @@ export function Layout() {
     closeRail,
   } = useNavigation();
 
-  console.log('[Layout] Rendering - showRail:', showRail, 'isRailExpanded:', isRailExpanded, 'isModal:', isModal);
-
   // Calculate main content margin based on rail state
   const getMainMargin = () => {
-    const margin = !showRail ? '0' : (isRailExpanded ? config.navigation.expandedWidth : config.navigation.collapsedWidth);
-    console.log('[Layout] getMainMargin() called - returning:', margin);
-    return margin;
+    return !showRail ? '0' : (isRailExpanded ? config.navigation.expandedWidth : config.navigation.collapsedWidth);
   };
 
   return (
@@ -42,12 +38,7 @@ export function Layout() {
         className="transition-all duration-150 px-4 py-8 pb-24 md:pb-8"
         style={{
           marginLeft: getMainMargin(),
-          paddingTop: (() => {
-            const width = window.innerWidth;
-            const padding = width >= 768 ? `calc(${config.navigation.topBarHeight} + 2rem)` : '2rem';
-            console.log('[Layout] Calculating paddingTop - width:', width, 'padding:', padding);
-            return padding;
-          })(),
+          paddingTop: window.innerWidth >= 768 ? `calc(${config.navigation.topBarHeight} + 2rem)` : '2rem',
         }}
       >
         <div className="max-w-7xl mx-auto">

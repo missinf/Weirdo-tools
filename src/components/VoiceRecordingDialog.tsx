@@ -7,6 +7,7 @@ import {
   DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
+import { copy } from '@/copy';
 
 interface VoiceRecordingDialogProps {
   open: boolean;
@@ -43,9 +44,9 @@ export function VoiceRecordingDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
-        <DialogTitle className="sr-only">Voice Search</DialogTitle>
+        <DialogTitle className="sr-only">{copy.search.voice.title}</DialogTitle>
         <DialogDescription className="sr-only">
-          Speak your search query. Tap the microphone to start or stop recording.
+          {copy.search.voice.description}
         </DialogDescription>
         <div className="space-y-6">
           {/* Transcript display */}
@@ -58,9 +59,9 @@ export function VoiceRecordingDialog({
                 <span className="text-foreground opacity-60">{interimTranscript}</span>
               </p>
             ) : isRecording ? (
-              <p className="text-2xl text-foreground">Listening...</p>
+              <p className="text-2xl text-foreground">{copy.search.voice.listening}</p>
             ) : (
-              <p className="text-2xl text-foreground">Didn't hear that, try again.</p>
+              <p className="text-2xl text-foreground">{copy.search.voice.tryAgain}</p>
             )}
           </div>
 
@@ -99,7 +100,7 @@ export function VoiceRecordingDialog({
             {/* Helper text - always reserve space */}
             <div className="min-h-[20px] text-sm text-muted-foreground">
               {!isRecording && (
-                <span>Tap microphone to try again</span>
+                <span>{copy.search.voice.tapToRetry}</span>
               )}
             </div>
           </div>

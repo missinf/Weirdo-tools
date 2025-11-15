@@ -32,20 +32,15 @@ export function NavigationRail({
     ? config.navigation.expandedWidth
     : config.navigation.collapsedWidth;
 
-  console.log('[NavigationRail] Rendering - isExpanded:', isExpanded, 'isModal:', isModal, 'width:', width);
-
   return (
     <>
       {/* Backdrop for modal mode */}
       {isModal && isExpanded && (
-        <>
-          {console.log('[NavigationRail] Rendering backdrop (modal + expanded)')}
-          <div
-            className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden lg:hidden"
-            onClick={onClose}
-            aria-hidden="true"
-          />
-        </>
+        <div
+          className="fixed inset-0 z-40 bg-background/80 backdrop-blur-sm md:hidden lg:hidden"
+          onClick={onClose}
+          aria-hidden="true"
+        />
       )}
 
       {/* Navigation Rail */}
@@ -109,7 +104,6 @@ export function NavigationRail({
             );
 
             if (!isExpanded) {
-              console.log('[NavigationRail] Wrapping', item.label, 'in Tooltip (collapsed state)');
               return (
                 <Tooltip key={item.to}>
                   <TooltipTrigger asChild>
@@ -122,7 +116,6 @@ export function NavigationRail({
               );
             }
 
-            console.log('[NavigationRail] Rendering', item.label, 'without Tooltip (expanded state)');
             return navLink;
           })}
         </div>

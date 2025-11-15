@@ -13,11 +13,27 @@ export function HelpPage() {
   return (
     <div className="max-w-2xl mx-auto">
       <div className="space-y-6">
-      <div className="flex items-center gap-3">
-        <HelpCircle className="h-8 w-8 text-primary" />
-        <h1 className="text-3xl font-bold text-foreground">
-          {copy.help.title}
-        </h1>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <HelpCircle className="h-8 w-8 text-primary" />
+          <h1 className="text-3xl font-bold text-foreground">
+            {copy.help.title}
+          </h1>
+        </div>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
+            >
+              <ExternalLink className="h-4 w-4 mr-2" />
+              <span className="hidden min-[500px]:inline">{copy.help.feedback.full}</span>
+              <span className="min-[500px]:hidden">{copy.help.feedback.short}</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>{copy.help.feedback.tooltip}</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
 
       <Card>
@@ -59,6 +75,21 @@ export function HelpPage() {
                 </AccordionTrigger>
                 <AccordionContent className="text-muted-foreground leading-relaxed">
                   {item.answer}
+                  {'link' in item && (
+                    <>
+                      {' '}
+                      <a
+                        href={item.link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-primary hover:underline inline-flex items-center gap-1"
+                      >
+                        {item.link.text}
+                        <ExternalLink className="h-3 w-3" />
+                      </a>
+                      .
+                    </>
+                  )}
                 </AccordionContent>
               </AccordionItem>
             ))}
@@ -71,39 +102,22 @@ export function HelpPage() {
           <CardTitle>{copy.help.credits.title}</CardTitle>
           <CardDescription>{copy.help.credits.description}</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Support on Patreon
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Support creators on Patreon</p>
-              </TooltipContent>
-            </Tooltip>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="outline"
-                  className="flex-1"
-                  onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Give me feedback
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Share feedback on Discord</p>
-              </TooltipContent>
-            </Tooltip>
-          </div>
+        <CardContent>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                {copy.help.credits.patreon.button}
+              </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>{copy.help.credits.patreon.tooltip}</p>
+            </TooltipContent>
+          </Tooltip>
         </CardContent>
       </Card>
       </div>

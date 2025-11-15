@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { config } from '@/config';
 
 // Calculate initial screen size synchronously to prevent layout shift
 const getInitialScreenState = () => {
@@ -24,46 +25,67 @@ export function useNavigation() {
   const [isTablet, setIsTablet] = useState(initialState.isTablet);
 
   useEffect(() => {
+    let timeoutId: number | null = null;
+    let rafId: number | null = null;
+
     const checkScreenSize = () => {
-      const timestamp = performance.now();
       const width = window.innerWidth;
       const desktop = width >= 1024; // >= desktop breakpoint
       const tablet = width >= 768 && width < 1024; // tablet range
 
-      console.log(`[useNavigation] Resize event at ${timestamp.toFixed(2)}ms - Width: ${width}px`);
-
       // Update states only if they actually changed (using functional updates to get current state)
       setIsDesktop((prev) => {
-        if (prev !== desktop) {
-          console.log(`[useNavigation] Desktop state changed: ${prev} -> ${desktop}`);
-        }
-        return desktop;
+        return prev !== desktop ? desktop : prev;
       });
 
       setIsTablet((prev) => {
-        if (prev !== tablet) {
-          console.log(`[useNavigation] Tablet state changed: ${prev} -> ${tablet}`);
-        }
-        return tablet;
+        return prev !== tablet ? tablet : prev;
       });
 
       // On desktop, rail is expanded by default
       // On tablet, rail is collapsed by default
       // On mobile (< 768px), rail is hidden (bottom nav used instead)
       if (desktop) {
-        console.log(`[useNavigation] Setting rail to EXPANDED (desktop mode)`);
         setIsRailExpanded(true);
       } else if (tablet) {
-        console.log(`[useNavigation] Setting rail to COLLAPSED (tablet mode)`);
         setIsRailExpanded(false);
-      } else {
-        console.log(`[useNavigation] Mobile mode - rail will be hidden`);
       }
     };
 
+    const debouncedResize = () => {
+      // Cancel any pending timeout
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+
+      // Cancel any pending animation frame
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+
+      // Use RAF to sync with browser paint, then add small delay
+      rafId = requestAnimationFrame(() => {
+        timeoutId = window.setTimeout(() => {
+          checkScreenSize();
+        }, config.navigation.resizeDebounce);
+      });
+    };
+
+    // Run immediately on mount
     checkScreenSize();
-    window.addEventListener('resize', checkScreenSize);
-    return () => window.removeEventListener('resize', checkScreenSize);
+
+    // Add debounced listener for resize events
+    window.addEventListener('resize', debouncedResize);
+
+    return () => {
+      window.removeEventListener('resize', debouncedResize);
+      if (timeoutId !== null) {
+        clearTimeout(timeoutId);
+      }
+      if (rafId !== null) {
+        cancelAnimationFrame(rafId);
+      }
+    };
   }, []);
 
   const toggleRail = () => {

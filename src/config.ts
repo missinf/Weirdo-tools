@@ -27,6 +27,7 @@ export const config = {
     collapsedWidth: '72px',
     expandedWidth: '256px',
     topBarHeight: '64px',
+    resizeDebounce: 100, // milliseconds to debounce resize events
   },
   tapTarget: {
     minSize: '44px',

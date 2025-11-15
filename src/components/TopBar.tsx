@@ -22,16 +22,10 @@ export function TopBar({ onMenuClick }: TopBarProps) {
   const [shouldAutoStart, setShouldAutoStart] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  console.log('[TopBar] Rendering');
-
   const handleVoiceSearchComplete = (transcript: string) => {
-    console.log('Voice search completed:', transcript);
     setSearchValue(transcript);
     setIsVoiceDialogOpen(false);
-
-    // Trigger search with the transcript
     // TODO: Implement actual search functionality
-    console.log('Performing search for:', transcript);
   };
 
   const {
@@ -59,7 +53,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
 
   const handleMicClick = () => {
     if (!isSupported) {
-      alert('Voice search is not supported in your browser. Please try Chrome, Edge, or Safari.');
+      alert(copy.search.voice.unsupported);
       return;
     }
 
@@ -100,7 +94,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>Open navigation menu</p>
+            <p>{copy.navigation.menuTooltip}</p>
           </TooltipContent>
         </Tooltip>
 
@@ -127,7 +121,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                 id="search"
                 name="search"
                 type="search"
-                placeholder="Search"
+                placeholder={copy.search.placeholder}
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 className="flex-1 bg-background rounded-r-none border-r-0 h-11"
@@ -144,7 +138,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                   </Button>
                 </TooltipTrigger>
                 <TooltipContent>
-                  <p>Search</p>
+                  <p>{copy.search.tooltip}</p>
                 </TooltipContent>
               </Tooltip>
             </div>
@@ -160,7 +154,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                 </Button>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Search by voice</p>
+                <p>{copy.search.voice.tooltip}</p>
               </TooltipContent>
             </Tooltip>
           </div>
@@ -179,7 +173,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Search</p>
+              <p>{copy.search.tooltip}</p>
             </TooltipContent>
           </Tooltip>
           <Tooltip>
@@ -195,7 +189,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
               </Button>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Search by voice</p>
+              <p>{copy.search.voice.tooltip}</p>
             </TooltipContent>
           </Tooltip>
         </div>
