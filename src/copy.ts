@@ -19,6 +19,7 @@ export const copy = {
     comingSoon: 'Coming Soon',
     feedback: 'Give me feedback',
     donate: 'Donate',
+    popular: 'Popular',
     categories: {
       focus: 'Focus',
       organization: 'Organization',

@@ -1,6 +1,7 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { copy } from '@/copy';
 import { Bookmark } from 'lucide-react';
+import mascotWrench from '@/assets/images/mascotwrench.webp';
 
 export function SavedPage() {
   return (
@@ -13,13 +14,15 @@ export function SavedPage() {
       </div>
 
       <Card>
-        <CardContent className="pt-6">
-          <div className="h-64 rounded-md border-2 border-dashed border-border flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <Bookmark className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p className="font-medium text-foreground mb-1">{copy.saved.emptyTitle}</p>
-              <p className="text-sm">{copy.saved.emptyDescription}</p>
-            </div>
+        <CardContent className="flex items-center justify-center h-64 pt-6">
+          <div className="text-center text-muted-foreground">
+            <img
+              src={mascotWrench}
+              alt="Weirdo mascot with wrench"
+              className="h-32 mx-auto mb-4"
+            />
+            <p className="font-medium text-foreground mb-1">{copy.saved.emptyTitle}</p>
+            <p className="text-sm">{copy.saved.emptyDescription}</p>
           </div>
         </CardContent>
       </Card>
