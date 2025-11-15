@@ -22,6 +22,8 @@ export function TopBar({ onMenuClick }: TopBarProps) {
   const [shouldAutoStart, setShouldAutoStart] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
+  console.log('[TopBar] Rendering');
+
   const handleVoiceSearchComplete = (transcript: string) => {
     console.log('Voice search completed:', transcript);
     setSearchValue(transcript);
@@ -80,7 +82,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
 
   return (
     <header
-      className="sticky top-0 z-50 w-full border-b border-border bg-card"
+      className="md:fixed md:top-0 z-50 w-full border-b border-border bg-card"
       style={{ height: config.navigation.topBarHeight }}
     >
       <div className="flex h-full items-center gap-4 px-4 max-w-full">

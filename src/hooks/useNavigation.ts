@@ -25,20 +25,38 @@ export function useNavigation() {
 
   useEffect(() => {
     const checkScreenSize = () => {
+      const timestamp = performance.now();
       const width = window.innerWidth;
       const desktop = width >= 1024; // >= desktop breakpoint
       const tablet = width >= 768 && width < 1024; // tablet range
 
+      console.log(`[useNavigation] Resize event at ${timestamp.toFixed(2)}ms - Width: ${width}px`);
+
+      const prevDesktop = isDesktop;
+      const prevTablet = isTablet;
+
       setIsDesktop(desktop);
       setIsTablet(tablet);
+
+      // Log state transitions
+      if (prevDesktop !== desktop) {
+        console.log(`[useNavigation] Desktop state changed: ${prevDesktop} -> ${desktop}`);
+      }
+      if (prevTablet !== tablet) {
+        console.log(`[useNavigation] Tablet state changed: ${prevTablet} -> ${tablet}`);
+      }
 
       // On desktop, rail is expanded by default
       // On tablet, rail is collapsed by default
       // On mobile (< 768px), rail is hidden (bottom nav used instead)
       if (desktop) {
+        console.log(`[useNavigation] Setting rail to EXPANDED (desktop mode)`);
         setIsRailExpanded(true);
       } else if (tablet) {
+        console.log(`[useNavigation] Setting rail to COLLAPSED (tablet mode)`);
         setIsRailExpanded(false);
+      } else {
+        console.log(`[useNavigation] Mobile mode - rail will be hidden`);
       }
     };
 
