@@ -162,7 +162,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                 placeholder={copy.search.placeholder}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="bg-background h-8 md:h-9"
+                className="bg-background h-8"
                 autoFocus={isSearchPage}
               />
               <Tooltip>
