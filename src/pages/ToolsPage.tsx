@@ -176,7 +176,7 @@ export function ToolsPage() {
         />
       </div>
 
-      <div className="space-y-8">
+      <div className="space-y-6">
         {/* Popular Tools Section */}
         <ToolCarousel title={copy.tools.popular} tools={popularTools} />
 
