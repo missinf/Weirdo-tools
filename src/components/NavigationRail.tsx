@@ -55,27 +55,6 @@ export function NavigationRail({
           bottom: 0,
         }}
       >
-        {/* Close button for modal mode */}
-        {isModal && isExpanded && (
-          <div className="flex justify-end p-2 border-b border-border">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={onClose}
-                  aria-label="Close navigation"
-                >
-                  <X className="h-5 w-5" />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>Close navigation panel</p>
-              </TooltipContent>
-            </Tooltip>
-          </div>
-        )}
-
         {/* Navigation Items */}
         <div className="flex flex-col gap-2 p-2 flex-1">
           {navItems.map((item) => {

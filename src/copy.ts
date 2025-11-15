@@ -40,7 +40,6 @@ export const copy = {
     feedback: {
       short: 'Feedback',
       full: 'Give me feedback',
-      tooltip: 'Share feedback on Discord',
     },
     about: {
       title: 'What is Weirdo Tools?',
@@ -81,7 +80,6 @@ export const copy = {
       description: 'Thank you to all our Patreon supporters who make this project possible!',
       patreon: {
         button: 'Support on Patreon',
-        tooltip: 'Support creators on Patreon',
       },
       patreonLink: 'https://www.patreon.com/cw/ADHD_weirdo_',
       discordLink: 'https://discord.gg/PVc4jRC5tE',

@@ -1,9 +1,4 @@
 import { Button } from '@/components/ui/button';
-import {
-  Tooltip,
-  TooltipTrigger,
-  TooltipContent,
-} from '@/components/ui/tooltip';
 import { copy } from '@/copy';
 import { Banner } from '@/components/Banner';
 import { ToolCarousel } from '@/components/ToolCarousel';
@@ -112,36 +107,22 @@ export function ToolsPage() {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-border">
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="secondary"
-              size="lg"
-              className="flex-1"
-              onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
-            >
-              {copy.tools.feedback}
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{copy.help.feedback.tooltip}</p>
-          </TooltipContent>
-        </Tooltip>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="outline"
-              size="lg"
-              className="flex-1"
-              onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
-            >
-              {copy.tools.donate}
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{copy.help.credits.patreon.tooltip}</p>
-          </TooltipContent>
-        </Tooltip>
+        <Button
+          variant="secondary"
+          size="lg"
+          className="flex-1"
+          onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
+        >
+          {copy.tools.feedback}
+        </Button>
+        <Button
+          variant="outline"
+          size="lg"
+          className="flex-1"
+          onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
+        >
+          {copy.tools.donate}
+        </Button>
       </div>
     </>
   );

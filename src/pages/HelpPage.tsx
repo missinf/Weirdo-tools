@@ -20,20 +20,13 @@ export function HelpPage() {
             {copy.help.title}
           </h1>
         </div>
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
-            >
-              <ExternalLink className="h-4 w-4 mr-2" />
-              <span className="hidden min-[500px]:inline">{copy.help.feedback.full}</span>
-              <span className="min-[500px]:hidden">{copy.help.feedback.short}</span>
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{copy.help.feedback.tooltip}</p>
-          </TooltipContent>
-        </Tooltip>
+        <Button
+          onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
+        >
+          <ExternalLink className="h-4 w-4 mr-2" />
+          <span className="hidden min-[500px]:inline">{copy.help.feedback.full}</span>
+          <span className="min-[500px]:hidden">{copy.help.feedback.short}</span>
+        </Button>
       </div>
 
       <Card>
@@ -88,21 +81,14 @@ export function HelpPage() {
           <CardDescription>{copy.help.credits.description}</CardDescription>
         </CardHeader>
         <CardContent>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button
-                variant="outline"
-                className="w-full"
-                onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
-              >
-                <ExternalLink className="h-4 w-4 mr-2" />
-                {copy.help.credits.patreon.button}
-              </Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>{copy.help.credits.patreon.tooltip}</p>
-            </TooltipContent>
-          </Tooltip>
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
+          >
+            <ExternalLink className="h-4 w-4 mr-2" />
+            {copy.help.credits.patreon.button}
+          </Button>
         </CardContent>
       </Card>
       </div>

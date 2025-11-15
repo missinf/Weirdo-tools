@@ -83,22 +83,15 @@ export function TopBar({ onMenuClick }: TopBarProps) {
     >
       <div className="flex h-full items-center gap-4 px-4 max-w-full">
         {/* Menu Button */}
-        <Tooltip>
-          <TooltipTrigger asChild>
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onMenuClick}
-              className="shrink-0 hidden md:flex"
-              aria-label="Toggle navigation menu"
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>{copy.navigation.menuTooltip}</p>
-          </TooltipContent>
-        </Tooltip>
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={onMenuClick}
+          className="shrink-0 hidden md:flex"
+          aria-label="Toggle navigation menu"
+        >
+          <Menu className="h-6 w-6" />
+        </Button>
 
         {/* Brand */}
         <button
