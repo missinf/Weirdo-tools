@@ -46,7 +46,7 @@ export function NavigationRail({
       {/* Navigation Rail */}
       <nav
         className={cn(
-          'fixed left-0 z-50 border-r border-border bg-card transition-all duration-150 hidden md:flex flex-col',
+          'fixed left-0 z-50 bg-background transition-all duration-150 hidden md:flex flex-col',
           isModal && isExpanded && 'shadow-lg'
         )}
         style={{

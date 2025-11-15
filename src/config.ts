@@ -26,7 +26,7 @@ export const config = {
     expandedRailBreakpoint: '1024px',
     collapsedWidth: '72px',
     expandedWidth: '256px',
-    topBarHeight: '64px',
+    topBarHeight: '40px',
     resizeDebounce: 100, // milliseconds to debounce resize events
   },
   tapTarget: {

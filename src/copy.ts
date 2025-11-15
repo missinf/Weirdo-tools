@@ -93,7 +93,6 @@ export const copy = {
       description: 'Customize how Weirdo Tools looks',
       darkMode: {
         label: 'Dark mode',
-        description: 'Toggle between light and dark themes',
         tooltip: 'Toggle dark mode',
       },
     },

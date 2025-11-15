@@ -2,6 +2,10 @@ import { Button } from '@/components/ui/button';
 import { copy } from '@/copy';
 import { Banner } from '@/components/Banner';
 import { ToolCarousel } from '@/components/ToolCarousel';
+import { Tool } from '@/components/ToolCard';
+import { SearchResults } from '@/components/SearchResults';
+import { useSearch } from '@/contexts/SearchContext';
+import { useMemo } from 'react';
 
 const popularTools = [
   { id: 1, name: 'Pomodoro Timer' },
@@ -82,6 +86,54 @@ const toolCategories = [
 ];
 
 export function ToolsPage() {
+  const { searchQuery } = useSearch();
+
+  // Get all tools from all categories for search
+  const allTools = useMemo(() => {
+    const toolsMap = new Map<number, Tool>();
+
+    // Add popular tools
+    popularTools.forEach(tool => toolsMap.set(tool.id, tool));
+
+    // Add all category tools
+    toolCategories.forEach(category => {
+      category.tools.forEach(tool => toolsMap.set(tool.id, tool));
+    });
+
+    return Array.from(toolsMap.values());
+  }, []);
+
+  // Filter all tools based on search query
+  const searchResults = useMemo(() => {
+    if (!searchQuery.trim()) return null;
+    const query = searchQuery.toLowerCase();
+    return allTools.filter(tool =>
+      tool.name.toLowerCase().includes(query)
+    );
+  }, [searchQuery, allTools]);
+
+  // Show search results in grid if searching (desktop only - md and above)
+  if (searchResults !== null) {
+    return (
+      <>
+        <Banner
+          storageKey="weirdo-tools-banner-dismissed"
+          dismissLabel={copy.tools.banner.dismiss}
+          ariaLabel="Welcome message"
+          content={
+            <p className="text-base leading-relaxed">
+              <span className="font-semibold text-foreground">{copy.tools.banner.welcome}</span>{' '}
+              <span className="text-muted-foreground">{copy.tools.banner.description}</span>
+            </p>
+          }
+        />
+
+        <SearchResults results={searchResults} searchQuery={searchQuery} />
+      </>
+    );
+  }
+
+  // Show normal category view when not searching
   return (
     <>
       <Banner

@@ -30,14 +30,9 @@ export function SettingsPage() {
           <div className="flex items-center justify-between space-x-4">
             <div className="flex items-center gap-3 flex-1">
               <Moon className="h-5 w-5 text-muted-foreground" />
-              <div className="flex flex-col gap-1">
-                <label htmlFor="dark-mode" className="text-sm font-medium text-foreground cursor-pointer">
-                  {copy.settings.appearance.darkMode.label}
-                </label>
-                <p className="text-sm text-muted-foreground">
-                  {copy.settings.appearance.darkMode.description}
-                </p>
-              </div>
+              <label htmlFor="dark-mode" className="text-sm font-medium text-foreground cursor-pointer">
+                {copy.settings.appearance.darkMode.label}
+              </label>
             </div>
             <Tooltip>
               <TooltipTrigger asChild>
