@@ -3,6 +3,8 @@ import { Mic } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
+  DialogTitle,
+  DialogDescription,
 } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 
@@ -41,6 +43,10 @@ export function VoiceRecordingDialog({
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-lg">
+        <DialogTitle className="sr-only">Voice Search</DialogTitle>
+        <DialogDescription className="sr-only">
+          Speak your search query. Tap the microphone to start or stop recording.
+        </DialogDescription>
         <div className="space-y-6">
           {/* Transcript display */}
           <div className="min-h-[80px] rounded-md bg-background p-4 flex items-center justify-center">

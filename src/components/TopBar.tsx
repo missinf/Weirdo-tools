@@ -110,8 +110,14 @@ export function TopBar({ onMenuClick }: TopBarProps) {
           </span>
         </div>
 
+        {/* Spacer - smoothly grows from 1rem to 60rem between lg and really large screens */}
+        <div
+          className="shrink"
+          style={{ width: 'clamp(1rem, 20vw, 60rem)' }}
+        />
+
         {/* Search Bar - Full version (> 500px) */}
-        <div className="flex-1 max-w-xl hidden min-[501px]:flex ml-auto">
+        <div className="flex-1 max-w-xl hidden min-[501px]:flex">
           <div className="flex w-full gap-2">
             <div className="flex flex-1">
               <Input
