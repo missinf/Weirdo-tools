@@ -1,8 +1,11 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { copy } from '@/copy';
 import { Bookmark } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export function SavedPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="space-y-6">
       <div className="flex items-center gap-3">
@@ -12,20 +15,19 @@ export function SavedPage() {
         </h1>
       </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>{copy.saved.noSavedTitle}</CardTitle>
-          <CardDescription>{copy.saved.empty}</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="h-64 rounded-md border-2 border-dashed border-border flex items-center justify-center">
-            <div className="text-center text-muted-foreground">
-              <Bookmark className="h-12 w-12 mx-auto mb-4 opacity-50" />
-              <p>{copy.saved.placeholder}</p>
-            </div>
-          </div>
-        </CardContent>
-      </Card>
+      <div className="h-96 flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <Bookmark className="h-16 w-16 mx-auto text-muted-foreground opacity-50" />
+          <p className="text-lg text-muted-foreground">{copy.saved.empty}</p>
+          <Button
+            onClick={() => navigate('/tools')}
+            size="lg"
+            className="text-base"
+          >
+            {copy.saved.browseTools}
+          </Button>
+        </div>
+      </div>
     </div>
   );
 }

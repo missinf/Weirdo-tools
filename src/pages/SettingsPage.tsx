@@ -25,7 +25,6 @@ export function SettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle>{copy.settings.appearance.title}</CardTitle>
-          <CardDescription>{copy.settings.appearance.description}</CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex items-center justify-between space-x-4">

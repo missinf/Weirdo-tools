@@ -9,6 +9,7 @@ import {
   TooltipContent,
 } from '@/components/ui/tooltip';
 import { useState, useRef, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useVoiceRecording } from '@/hooks/useVoiceRecording';
 import { VoiceRecordingDialog } from '@/components/VoiceRecordingDialog';
 
@@ -17,6 +18,7 @@ interface TopBarProps {
 }
 
 export function TopBar({ onMenuClick }: TopBarProps) {
+  const navigate = useNavigate();
   const [searchValue, setSearchValue] = useState('');
   const [isVoiceDialogOpen, setIsVoiceDialogOpen] = useState(false);
   const [shouldAutoStart, setShouldAutoStart] = useState(false);
@@ -99,12 +101,16 @@ export function TopBar({ onMenuClick }: TopBarProps) {
         </Tooltip>
 
         {/* Brand */}
-        <div className="flex items-center gap-2 shrink-0">
+        <button
+          onClick={() => navigate('/')}
+          className="flex items-center gap-2 shrink-0 hover:opacity-80 transition-opacity cursor-pointer"
+          aria-label="Go to Tools page"
+        >
           <Wrench className="h-6 w-6 text-primary" />
           <span className="text-xl font-semibold text-foreground">
             {copy.app.title}
           </span>
-        </div>
+        </button>
 
         {/* Spacer - smoothly grows from 1rem to 60rem between lg and really large screens */}
         <div

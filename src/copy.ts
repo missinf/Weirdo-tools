@@ -31,9 +31,8 @@ export const copy = {
   },
   saved: {
     title: 'Saved Tools',
-    empty: 'You haven\'t saved any tools yet. Browse the Tools page and save your favorites for quick access.',
-    noSavedTitle: 'No saved tools yet',
-    placeholder: 'Your saved tools will appear here',
+    empty: 'Save your favorite tools for quick access',
+    browseTools: 'Browse Tools',
   },
   help: {
     title: 'Help',
@@ -44,7 +43,7 @@ export const copy = {
     },
     about: {
       title: 'What is Weirdo Tools?',
-      description: 'Weirdo Tools is a free collection of lightweight, easy-to-use tools designed specifically for people with ADHD. All your data is stored locally in your browser - no login required.',
+      description: 'Weirdo Tools is a free collection of small, simple tools made ADHDers.',
     },
     howTo: {
       title: 'How to use the app',
@@ -60,19 +59,19 @@ export const copy = {
       items: [
         {
           question: 'Is my data private?',
-          answer: 'Yes. All data is stored locally in your browser- I don\'t save or access any of it. When AI features are used, only the information you submit is sent to the AI provider. For more details, see',
+          answer: 'Yes. Your data is yours- I don\'t save or see of it. When AI features are used, only the information you submit is sent to the AI provider. For more details, see',
           link: {
             text: 'Privacy Policy',
             url: 'https://www.adhdweirdo.com/privacy.html',
           },
         },
         {
-          question: 'Is my data saved?',
-          answer: 'Yes. All your progress and preferences are saved locally in your browser. Just don/t clear your browser data!',
+          question: 'Can I back up my data?',
+          answer: "Right now, everything is saved locally in your browser, so just don't clear your browser data! I'll look into adding a backup feature if enough people want it.",
         },
         {
-          question: 'How can I share ideas or suggestions?',
-          answer: 'Join our Discord community to share ideas, suggestions, or feedback. Click the "Give me feedback" button at the top of this page.',
+          question: 'Something wrong or have an idea?',
+          answer: 'Join our Discord community to share ideas or report bugs. Click the "Feedback" button at the top of this page.',
         },
       ],
     },
@@ -92,7 +91,6 @@ export const copy = {
     placeholder: 'Settings coming soon',
     appearance: {
       title: 'Appearance',
-      description: 'Customize how Weirdo Tools looks',
       darkMode: {
         label: 'Dark mode',
         description: 'Toggle between light and dark themes',

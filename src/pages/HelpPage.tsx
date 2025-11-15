@@ -49,21 +49,6 @@ export function HelpPage() {
 
       <Card>
         <CardHeader>
-          <CardTitle>{copy.help.howTo.title}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ol className="space-y-3 list-decimal list-inside">
-            {copy.help.howTo.steps.map((step, index) => (
-              <li key={index} className="text-foreground leading-relaxed">
-                {step}
-              </li>
-            ))}
-          </ol>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
           <CardTitle>{copy.help.faq.title}</CardTitle>
         </CardHeader>
         <CardContent>
