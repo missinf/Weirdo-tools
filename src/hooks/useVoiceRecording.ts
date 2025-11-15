@@ -29,7 +29,7 @@ export function useVoiceRecording({
   const [interimTranscript, setInterimTranscript] = useState('');
   const [error, setError] = useState<string | null>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
-  const silenceTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const silenceTimerRef = useRef<number | null>(null);
   const onTranscriptCompleteRef = useRef(onTranscriptComplete);
   const hasStartedSpeakingRef = useRef(false);
 
