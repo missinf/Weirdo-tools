@@ -28,13 +28,13 @@ export function FilterCarousel({ filters, activeFilter, onFilterChange }: Filter
           {filters.map((filter) => (
             <Button
               key={filter.id}
-              variant={activeFilter === filter.id ? 'default' : 'outline'}
+              variant={activeFilter === filter.id ? 'secondary' : 'outline'}
               size="sm"
               onClick={() => onFilterChange(filter.id)}
               className={cn(
-                'rounded-lg px-4 whitespace-nowrap transition-all',
+                'rounded-lg px-4 whitespace-nowrap transition-colors',
                 activeFilter === filter.id
-                  ? 'bg-primary text-primary-foreground shadow-sm'
+                  ? 'bg-secondary text-secondary-foreground shadow-sm'
                   : 'bg-background text-foreground hover:bg-accent hover:text-accent-foreground'
               )}
             >
