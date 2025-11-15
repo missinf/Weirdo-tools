@@ -88,7 +88,7 @@ For new users, I'm thinking of putting a dismissal banner on the tools page, whi
 ### 8. **Internationalization (i18n)**
 Even if English-only now, plan for it:
 - No hardcoded strings
-- Put all text in src/copy.ts
+- Put all text in one place in src/copy.ts
 
 ### APIs
 

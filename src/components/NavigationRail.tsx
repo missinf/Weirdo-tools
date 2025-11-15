@@ -4,6 +4,11 @@ import { copy } from '@/copy';
 import { config } from '@/config';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 
 const navItems = [
   { to: '/', label: copy.nav.tools, icon: Wrench },
@@ -53,42 +58,66 @@ export function NavigationRail({
         {/* Close button for modal mode */}
         {isModal && isExpanded && (
           <div className="flex justify-end p-2 border-b border-border">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={onClose}
-              aria-label="Close navigation"
-            >
-              <X className="h-5 w-5" />
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={onClose}
+                  aria-label="Close navigation"
+                >
+                  <X className="h-5 w-5" />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Close navigation panel</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         )}
 
         {/* Navigation Items */}
         <div className="flex flex-col gap-2 p-2 flex-1">
-          {navItems.map((item) => (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              onClick={() => {
-                if (isModal && isExpanded && onClose) {
-                  onClose();
+          {navItems.map((item) => {
+            const navLink = (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                onClick={() => {
+                  if (isModal && isExpanded && onClose) {
+                    onClose();
+                  }
+                }}
+                className={({ isActive }) =>
+                  cn(
+                    'flex items-center px-4 py-3 rounded-md transition-colors min-h-[44px]',
+                    'text-muted-foreground hover:text-foreground hover:bg-accent',
+                    isActive && 'bg-accent text-foreground'
+                  )
                 }
-              }}
-              className={({ isActive }) =>
-                cn(
-                  'flex items-center px-4 py-3 rounded-md transition-colors min-h-[44px]',
-                  'text-muted-foreground hover:text-foreground hover:bg-accent',
-                  isActive && 'bg-accent text-foreground'
-                )
-              }
-            >
-              <item.icon className="h-6 w-6 shrink-0" />
-              {isExpanded && (
-                <span className="text-sm font-medium ml-4">{item.label}</span>
-              )}
-            </NavLink>
-          ))}
+              >
+                <item.icon className="h-6 w-6 shrink-0" />
+                {isExpanded && (
+                  <span className="text-sm font-medium ml-4">{item.label}</span>
+                )}
+              </NavLink>
+            );
+
+            if (!isExpanded) {
+              return (
+                <Tooltip key={item.to}>
+                  <TooltipTrigger asChild>
+                    {navLink}
+                  </TooltipTrigger>
+                  <TooltipContent side="right">
+                    <p>{item.label}</p>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            }
+
+            return navLink;
+          })}
         </div>
       </nav>
     </>

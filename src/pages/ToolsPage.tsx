@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import { X } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -9,9 +7,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 import { copy } from '@/copy';
-
-const BANNER_DISMISSED_KEY = 'weirdo-tools-banner-dismissed';
+import { Banner } from '@/components/Banner';
 
 const toolCategories = [
   {
@@ -83,47 +85,19 @@ const toolCategories = [
 ];
 
 export function ToolsPage() {
-  const [bannerDismissed, setBannerDismissed] = useState(() => {
-    return localStorage.getItem(BANNER_DISMISSED_KEY) === 'true';
-  });
-
-  const handleDismissBanner = () => {
-    localStorage.setItem(BANNER_DISMISSED_KEY, 'true');
-    setBannerDismissed(true);
-  };
-
   return (
-    <div className="space-y-6">
-      {!bannerDismissed && (
-        <Card className="bg-primary/5 border-primary/20">
-          <CardHeader className="pb-3">
-            <div className="flex items-start justify-between gap-4">
-              <div className="flex-1">
-                <CardTitle className="text-xl mb-2">
-                  {copy.tools.banner.title}
-                </CardTitle>
-                <CardDescription className="text-base">
-                  {copy.tools.banner.description}
-                </CardDescription>
-              </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                onClick={handleDismissBanner}
-                className="shrink-0"
-                aria-label="Dismiss banner"
-              >
-                <X className="h-5 w-5" />
-              </Button>
-            </div>
-          </CardHeader>
-          <CardContent>
-            <Button onClick={handleDismissBanner}>
-              {copy.tools.banner.dismiss}
-            </Button>
-          </CardContent>
-        </Card>
-      )}
+    <>
+      <Banner
+        storageKey="weirdo-tools-banner-dismissed"
+        dismissLabel={copy.tools.banner.dismiss}
+        ariaLabel="Welcome message"
+        content={
+          <p className="text-base leading-relaxed">
+            <span className="font-semibold text-foreground">Welcome!</span>{' '}
+            <span className="text-muted-foreground">These are small tools made to help with ADHD.</span>
+          </p>
+        }
+      />
 
       <div className="space-y-8">
         {toolCategories.map((category) => (
@@ -165,22 +139,37 @@ export function ToolsPage() {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-border">
-        <Button
-          variant="outline"
-          size="lg"
-          className="flex-1"
-          onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
-        >
-          {copy.tools.feedback}
-        </Button>
-        <Button
-          size="lg"
-          className="flex-1"
-          onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
-        >
-          {copy.tools.donate}
-        </Button>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="secondary"
+              size="lg"
+              className="flex-1"
+              onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
+            >
+              {copy.tools.feedback}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Share feedback on Discord</p>
+          </TooltipContent>
+        </Tooltip>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              variant="outline"
+              size="lg"
+              className="flex-1"
+              onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
+            >
+              {copy.tools.donate}
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Support on Patreon</p>
+          </TooltipContent>
+        </Tooltip>
       </div>
-    </div>
+    </>
   );
 }

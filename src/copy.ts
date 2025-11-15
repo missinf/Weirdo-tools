@@ -13,7 +13,7 @@ export const copy = {
   tools: {
     banner: {
       title: 'Welcome to Weirdo Tools!',
-      description: 'A collection of free tools designed to help with ADHD. Browse through the categories below to find tools that work for you. You can save your favorites for quick access.',
+      description: 'A collection of small tools made to help with ADHD.',
       dismiss: 'Got it',
     },
     feedback: 'Give me feedback',

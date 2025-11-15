@@ -1,9 +1,27 @@
 import { useState, useEffect } from 'react';
 
+// Calculate initial screen size synchronously to prevent layout shift
+const getInitialScreenState = () => {
+  if (typeof window === 'undefined') {
+    return { isDesktop: false, isTablet: false, isRailExpanded: false };
+  }
+
+  const width = window.innerWidth;
+  const desktop = width >= 1024;
+  const tablet = width >= 768 && width < 1024;
+
+  return {
+    isDesktop: desktop,
+    isTablet: tablet,
+    isRailExpanded: desktop, // Expanded on desktop by default
+  };
+};
+
 export function useNavigation() {
-  const [isRailExpanded, setIsRailExpanded] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
+  const initialState = getInitialScreenState();
+  const [isRailExpanded, setIsRailExpanded] = useState(initialState.isRailExpanded);
+  const [isDesktop, setIsDesktop] = useState(initialState.isDesktop);
+  const [isTablet, setIsTablet] = useState(initialState.isTablet);
 
   useEffect(() => {
     const checkScreenSize = () => {

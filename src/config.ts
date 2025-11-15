@@ -36,4 +36,8 @@ export const config = {
     minFontSize: '16px',
     lineHeight: 1.5,
   },
+  voiceRecording: {
+    silenceTimeout: 500, // milliseconds of silence before auto-stopping
+    initialDelay: 3000, // milliseconds to wait before starting silence detection
+  },
 } as const;

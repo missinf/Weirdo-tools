@@ -1,12 +1,18 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 import { copy } from '@/copy';
 import { HelpCircle, ExternalLink } from 'lucide-react';
 
 export function HelpPage() {
   return (
-    <div className="space-y-6">
+    <div className="max-w-2xl mx-auto">
+      <div className="space-y-6">
       <div className="flex items-center gap-3">
         <HelpCircle className="h-8 w-8 text-primary" />
         <h1 className="text-3xl font-bold text-foreground">
@@ -67,25 +73,40 @@ export function HelpPage() {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button
-              variant="outline"
-              className="flex-1"
-              onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
-            >
-              <ExternalLink className="h-4 w-4 mr-2" />
-              Support on Patreon
-            </Button>
-            <Button
-              variant="outline"
-              className="flex-1"
-              onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
-            >
-              <ExternalLink className="h-4 w-4 mr-2" />
-              Join Discord
-            </Button>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => window.open(copy.help.credits.patreonLink, '_blank')}
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Support on Patreon
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Support creators on Patreon</p>
+              </TooltipContent>
+            </Tooltip>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="outline"
+                  className="flex-1"
+                  onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
+                >
+                  <ExternalLink className="h-4 w-4 mr-2" />
+                  Give me feedback
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Share feedback on Discord</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

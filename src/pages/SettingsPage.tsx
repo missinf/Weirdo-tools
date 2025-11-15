@@ -1,5 +1,10 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Switch } from '@/components/ui/switch';
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from '@/components/ui/tooltip';
 import { copy } from '@/copy';
 import { useDarkMode } from '@/hooks/useDarkMode';
 import { Settings as SettingsIcon, Moon } from 'lucide-react';
@@ -8,7 +13,8 @@ export function SettingsPage() {
   const { isDark, toggle } = useDarkMode();
 
   return (
-    <div className="space-y-6">
+    <div className="max-w-2xl mx-auto">
+      <div className="space-y-6">
       <div className="flex items-center gap-3">
         <SettingsIcon className="h-8 w-8 text-primary" />
         <h1 className="text-3xl font-bold text-foreground">
@@ -34,14 +40,24 @@ export function SettingsPage() {
                 </p>
               </div>
             </div>
-            <Switch
-              id="dark-mode"
-              checked={isDark}
-              onCheckedChange={toggle}
-            />
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <div>
+                  <Switch
+                    id="dark-mode"
+                    checked={isDark}
+                    onCheckedChange={toggle}
+                  />
+                </div>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Toggle dark mode</p>
+              </TooltipContent>
+            </Tooltip>
           </div>
         </CardContent>
       </Card>
+      </div>
     </div>
   );
 }

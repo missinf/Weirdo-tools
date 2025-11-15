@@ -40,7 +40,6 @@ export function Layout() {
         className="transition-all duration-150 px-4 py-8 pb-24 md:pb-8"
         style={{
           marginLeft: getMainMargin(),
-          marginTop: config.navigation.topBarHeight,
         }}
       >
         <div className="max-w-7xl mx-auto">
