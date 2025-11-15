@@ -31,8 +31,8 @@ export const copy = {
   },
   saved: {
     title: 'Saved Tools',
-    empty: 'Save your favorite tools for quick access',
-    browseTools: 'Browse Tools',
+    emptyTitle: 'Nothing saved yet!',
+    emptyDescription: 'Find a tool you like? Just click the bookmark icon to save it here',
   },
   help: {
     title: 'Help',
@@ -43,7 +43,7 @@ export const copy = {
     },
     about: {
       title: 'What is Weirdo Tools?',
-      description: 'Weirdo Tools is a free collection of small, simple tools made ADHDers.',
+      description: 'Weirdo Tools is a free collection of small tools made for ADHDers.',
     },
     howTo: {
       title: 'How to use the app',
@@ -58,6 +58,10 @@ export const copy = {
       title: 'FAQ',
       items: [
         {
+          question: 'Something wrong or have an idea?',
+          answer: 'Join our Discord community to share ideas or report bugs. Click the "Feedback" button at the top of this page.',
+        },
+        {
           question: 'Is my data private?',
           answer: 'Yes. Your data is yours- I don\'t save or see of it. When AI features are used, only the information you submit is sent to the AI provider. For more details, see',
           link: {
@@ -68,10 +72,6 @@ export const copy = {
         {
           question: 'Can I back up my data?',
           answer: "Right now, everything is saved locally in your browser, so just don't clear your browser data! I'll look into adding a backup feature if enough people want it.",
-        },
-        {
-          question: 'Something wrong or have an idea?',
-          answer: 'Join our Discord community to share ideas or report bugs. Click the "Feedback" button at the top of this page.',
         },
       ],
     },
@@ -91,6 +91,7 @@ export const copy = {
     placeholder: 'Settings coming soon',
     appearance: {
       title: 'Appearance',
+      description: 'Customize how Weirdo Tools looks',
       darkMode: {
         label: 'Dark mode',
         description: 'Toggle between light and dark themes',
