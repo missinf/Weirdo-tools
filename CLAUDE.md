@@ -100,3 +100,4 @@ Even if English-only now, plan for it:
 * When asked for **options/ideas**, provide pros/cons with a recommendation (unless for copy — then give 5–10 options without pros/cons).
 * Don't remove console logs unless I ask you explicitly.
 * Do not violate color guidelines and DO NOT hard-code colors.
+* Avoid web searches unless absolutely necessary and limit to only 1.

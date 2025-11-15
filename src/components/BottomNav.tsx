@@ -14,20 +14,20 @@ const navItems = [
 export const BottomNav = memo(function BottomNav() {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border bg-card md:hidden">
-      <div className="flex items-center justify-around h-16">
+      <div className="flex items-center justify-around h-14">
         {navItems.map((item) => (
           <NavLink
             key={item.to}
             to={item.to}
             className={({ isActive }) =>
               cn(
-                'flex flex-col items-center justify-center gap-1 px-3 py-2 rounded-md transition-colors min-h-[44px] min-w-[44px] flex-1',
+                'flex flex-col items-center justify-center gap-0.5 px-2 py-1.5 rounded-md transition-colors min-h-[44px] min-w-[44px] flex-1',
                 'text-muted-foreground hover:text-foreground hover:bg-accent',
                 isActive && 'bg-accent text-foreground'
               )
             }
           >
-            <item.icon className="h-6 w-6" />
+            <item.icon className="h-5 w-5" />
             <span className="text-xs">{item.label}</span>
           </NavLink>
         ))}

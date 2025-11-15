@@ -2,6 +2,7 @@ import { Menu, Search, Wrench, Mic } from 'lucide-react';
 import { copy } from '@/copy';
 import { config } from '@/config';
 import { Button } from '@/components/ui/button';
+import { ButtonGroup } from '@/components/ui/button-group';
 import { Input } from '@/components/ui/input';
 import {
   Tooltip,
@@ -78,10 +79,9 @@ export function TopBar({ onMenuClick }: TopBarProps) {
 
   return (
     <header
-      className="md:fixed md:top-0 z-50 w-full border-b border-border bg-card"
-      style={{ height: config.navigation.topBarHeight }}
+      className="fixed top-0 z-50 w-full border-b border-border bg-card h-14 md:h-16"
     >
-      <div className="flex h-full items-center gap-4 px-4 max-w-full">
+      <div className="flex h-full items-center gap-3 px-3 md:gap-4 md:px-4 max-w-full">
         {/* Menu Button */}
         <Button
           variant="ghost"
@@ -96,11 +96,11 @@ export function TopBar({ onMenuClick }: TopBarProps) {
         {/* Brand */}
         <button
           onClick={() => navigate('/')}
-          className="flex items-center gap-2 shrink-0 hover:opacity-80 transition-opacity cursor-pointer"
+          className="flex items-center gap-1.5 md:gap-2 shrink-0 hover:opacity-80 transition-opacity cursor-pointer"
           aria-label="Go to Tools page"
         >
-          <Wrench className="h-6 w-6 text-primary" />
-          <span className="text-xl font-semibold text-foreground">
+          <Wrench className="h-5 w-5 md:h-6 md:w-6 text-primary" />
+          <span className="text-lg md:text-xl font-semibold text-foreground">
             {copy.app.title}
           </span>
         </button>
@@ -111,10 +111,10 @@ export function TopBar({ onMenuClick }: TopBarProps) {
           style={{ width: 'clamp(1rem, 20vw, 60rem)' }}
         />
 
-        {/* Search Bar - Full version (> 500px) */}
-        <div className="flex-1 max-w-xl hidden min-[501px]:flex">
+        {/* Search Bar - Full version (Desktop: >= 768px) */}
+        <div className="flex-1 max-w-xl hidden md:flex">
           <div className="flex w-full gap-2">
-            <div className="flex flex-1">
+            <ButtonGroup className="flex-1">
               <Input
                 ref={searchInputRef}
                 id="search"
@@ -123,7 +123,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                 placeholder={copy.search.placeholder}
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                className="flex-1 bg-background rounded-r-none border-r-0 h-11"
+                className="bg-background h-11"
               />
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -131,7 +131,6 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                     variant="secondary"
                     size="icon"
                     aria-label="Search"
-                    className="rounded-l-none"
                   >
                     <Search className="h-5 w-5" />
                   </Button>
@@ -140,7 +139,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                   <p>{copy.search.tooltip}</p>
                 </TooltipContent>
               </Tooltip>
-            </div>
+            </ButtonGroup>
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -159,8 +158,8 @@ export function TopBar({ onMenuClick }: TopBarProps) {
           </div>
         </div>
 
-        {/* Search & Mic Icons - Mobile version (<= 500px) */}
-        <div className="flex-1 flex justify-end gap-2 min-[501px]:hidden">
+        {/* Search & Mic Icons - Mobile version (< 768px) */}
+        <div className="flex-1 flex justify-end gap-2 md:hidden">
           <Tooltip>
             <TooltipTrigger asChild>
               <Button
@@ -182,7 +181,7 @@ export function TopBar({ onMenuClick }: TopBarProps) {
                 size="icon"
                 aria-label="Voice search"
                 onClick={handleMicClick}
-                className="hidden min-[290px]:flex"
+                className="hidden min-[320px]:flex"
               >
                 <Mic className="h-5 w-5" />
               </Button>

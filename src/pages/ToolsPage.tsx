@@ -108,7 +108,7 @@ export function ToolsPage() {
 
       <div className="flex flex-col sm:flex-row gap-4 pt-8 border-t border-border">
         <Button
-          variant="secondary"
+          variant="outline"
           size="lg"
           className="flex-1"
           onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
