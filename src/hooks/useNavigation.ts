@@ -32,19 +32,20 @@ export function useNavigation() {
 
       console.log(`[useNavigation] Resize event at ${timestamp.toFixed(2)}ms - Width: ${width}px`);
 
-      const prevDesktop = isDesktop;
-      const prevTablet = isTablet;
+      // Update states only if they actually changed (using functional updates to get current state)
+      setIsDesktop((prev) => {
+        if (prev !== desktop) {
+          console.log(`[useNavigation] Desktop state changed: ${prev} -> ${desktop}`);
+        }
+        return desktop;
+      });
 
-      setIsDesktop(desktop);
-      setIsTablet(tablet);
-
-      // Log state transitions
-      if (prevDesktop !== desktop) {
-        console.log(`[useNavigation] Desktop state changed: ${prevDesktop} -> ${desktop}`);
-      }
-      if (prevTablet !== tablet) {
-        console.log(`[useNavigation] Tablet state changed: ${prevTablet} -> ${tablet}`);
-      }
+      setIsTablet((prev) => {
+        if (prev !== tablet) {
+          console.log(`[useNavigation] Tablet state changed: ${prev} -> ${tablet}`);
+        }
+        return tablet;
+      });
 
       // On desktop, rail is expanded by default
       // On tablet, rail is collapsed by default
