@@ -1,12 +1,11 @@
 import { memo } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Wrench, Bookmark, HelpCircle, Settings } from 'lucide-react';
+import { Wrench, HelpCircle, Settings } from 'lucide-react';
 import { copy } from '@/copy';
 import { cn } from '@/lib/utils';
 
 const navItems = [
   { to: '/', label: copy.nav.tools, icon: Wrench },
-  { to: '/saved', label: copy.nav.saved, icon: Bookmark },
   { to: '/help', label: copy.nav.help, icon: HelpCircle },
   { to: '/settings', label: copy.nav.settings, icon: Settings },
 ];

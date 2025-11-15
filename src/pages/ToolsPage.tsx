@@ -4,8 +4,9 @@ import { Banner } from '@/components/Banner';
 import { ToolCarousel } from '@/components/ToolCarousel';
 import { Tool } from '@/components/ToolCard';
 import { SearchResults } from '@/components/SearchResults';
+import { FilterCarousel } from '@/components/FilterCarousel';
 import { useSearch } from '@/contexts/SearchContext';
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 
 const popularTools = [
   { id: 1, name: 'Pomodoro Timer' },
@@ -14,6 +15,12 @@ const popularTools = [
   { id: 31, name: 'Breathing Exercise' },
   { id: 8, name: 'Task Sorter' },
   { id: 26, name: 'Mind Map' },
+];
+
+const savedTools = [
+  { id: 2, name: 'Focus Sounds' },
+  { id: 10, name: 'Priority Matrix' },
+  { id: 22, name: 'Voice Memo' },
 ];
 
 const toolCategories = [
@@ -85,8 +92,21 @@ const toolCategories = [
   },
 ];
 
+const filterOptions = [
+  { id: 'all', label: copy.tools.filters.all },
+  { id: 'recentlyUsed', label: copy.tools.filters.recentlyUsed },
+  { id: 'saved', label: copy.tools.filters.saved },
+  { id: 'focus', label: copy.tools.filters.focus },
+  { id: 'organization', label: copy.tools.filters.organization },
+  { id: 'time', label: copy.tools.filters.time },
+  { id: 'memory', label: copy.tools.filters.memory },
+  { id: 'creativity', label: copy.tools.filters.creativity },
+  { id: 'wellness', label: copy.tools.filters.wellness },
+];
+
 export function ToolsPage() {
   const { searchQuery } = useSearch();
+  const [activeFilter, setActiveFilter] = useState('all');
 
   // Get all tools from all categories for search
   const allTools = useMemo(() => {
@@ -148,9 +168,20 @@ export function ToolsPage() {
         }
       />
 
+      <div className="mb-6">
+        <FilterCarousel
+          filters={filterOptions}
+          activeFilter={activeFilter}
+          onFilterChange={setActiveFilter}
+        />
+      </div>
+
       <div className="space-y-8">
         {/* Popular Tools Section */}
         <ToolCarousel title={copy.tools.popular} tools={popularTools} />
+
+        {/* Saved Tools Section */}
+        <ToolCarousel title={copy.tools.saved} tools={savedTools} />
 
         {/* Category Sections */}
         {toolCategories.map((category) => (

@@ -20,6 +20,18 @@ export const copy = {
     feedback: 'Give me feedback',
     donate: 'Donate',
     popular: 'Popular',
+    saved: 'Saved',
+    filters: {
+      all: 'All',
+      recentlyUsed: 'Recently Used',
+      saved: 'Saved',
+      focus: 'Focus',
+      organization: 'Organization',
+      time: 'Time Management',
+      memory: 'Memory',
+      creativity: 'Creativity',
+      wellness: 'Wellness',
+    },
     categories: {
       focus: 'Focus',
       organization: 'Organization',

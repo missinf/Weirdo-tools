@@ -28,6 +28,9 @@ export function TopBar({ onMenuClick }: TopBarProps) {
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   const isSearchPage = location.pathname === '/search';
+  const isHelpPage = location.pathname === '/help';
+  const isSettingsPage = location.pathname === '/settings';
+  const shouldShowSearch = !isHelpPage && !isSettingsPage;
 
   // Auto-focus search input when on search page
   useEffect(() => {
@@ -150,8 +153,8 @@ export function TopBar({ onMenuClick }: TopBarProps) {
           />
         )}
 
-        {/* Search Bar - Full version (Desktop: >= 768px OR Mobile on Search Page) */}
-        <div className={`flex-1 max-w-xl ${isSearchPage ? 'flex' : 'hidden md:flex'}`}>
+        {/* Search Bar - Full version (Desktop: >= 768px OR Mobile on Search Page) - Hidden on Help/Settings pages for md+ */}
+        <div className={`flex-1 max-w-xl ${isSearchPage ? 'flex' : shouldShowSearch ? 'hidden md:flex' : 'hidden'}`}>
           <div className="flex w-full gap-2">
             <ButtonGroup className="flex-1">
               <Input
@@ -198,8 +201,8 @@ export function TopBar({ onMenuClick }: TopBarProps) {
           </div>
         </div>
 
-        {/* Search & Mic Icons - Mobile version (< 768px) - Hidden on search page */}
-        {!isSearchPage && (
+        {/* Search & Mic Icons - Mobile version (< 768px) - Hidden on search page and Help/Settings pages */}
+        {!isSearchPage && shouldShowSearch && (
           <div className="flex-1 flex justify-end gap-2 md:hidden">
             <Tooltip>
               <TooltipTrigger asChild>

@@ -38,7 +38,7 @@ export function Layout() {
         className="transition-all duration-150 px-4 py-8 pb-24 md:pb-8"
         style={{
           marginLeft: getMainMargin(),
-          paddingTop: `calc(${config.navigation.topBarHeight} + 2rem)`,
+          paddingTop: `calc(${config.navigation.topBarHeight} + 1rem)`,
         }}
       >
         <div className="max-w-7xl mx-auto">
