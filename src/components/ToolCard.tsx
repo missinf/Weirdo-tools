@@ -12,7 +12,7 @@ interface ToolCardProps {
   className?: string;
 }
 
-export function ToolCard({ tool, onClick, className = 'w-[180px] md:w-[200px]' }: ToolCardProps) {
+export function ToolCard({ tool, onClick, className = 'w-[130px]' }: ToolCardProps) {
   return (
     <Card
       className={`${className} cursor-pointer transition-colors hover:bg-accent`}

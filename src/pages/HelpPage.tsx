@@ -22,6 +22,7 @@ export function HelpPage() {
         </div>
         <Button
           onClick={() => window.open(copy.help.credits.discordLink, '_blank')}
+          variant="secondary"
         >
           <ExternalLink className="h-4 w-4 mr-2" />
           <span className="hidden min-[500px]:inline">{copy.help.feedback.full}</span>

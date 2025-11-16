@@ -71,10 +71,10 @@ export const copy = {
       items: [
         {
           question: 'Something wrong or have an idea?',
-          answer: 'Join our Discord community to share ideas or report bugs. Click the "Feedback" button at the top of this page.',
+          answer: 'Use the Discord feedback channel to share ideas or report bugs. Click the "Feedback" button at the top of this page.',
         },
         {
-          question: 'Is my data private?',
+          question: 'Can you see my data?',
           answer: 'Yes. Your data is yours- I don\'t save or see of it. When AI features are used, only the information you submit is sent to the AI provider. For more details, see',
           link: {
             text: 'Privacy Policy',
